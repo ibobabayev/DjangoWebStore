@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h3>Вы можете ниже оставить отзыв о нас</h3>
+<form method="post">
+    {% csrf_token %}
+    <input type='text' placeholder="Введите своё имя" name="name"/><br>
+   <br> <input type="email" placeholder="Введите свой email" name="email" /> <br>
+    <br><textarea placeholder="Ваш отзыв" name='message'></textarea> <br>
+    <input type="submit" value="Отправить" />
+</form>
+<h5>Наше месторасположение: Стамбул, Турция</h5>
+<h5>Номер для связи: +90 555 300 20 10</h5>
+<h5>Наш адрес электронной почты: pasha@mail.com</h5>
+</body>
+</html>
