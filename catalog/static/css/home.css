@@ -16,3 +16,12 @@ body {
 h1 {
   margin: 20px;
 }
+
+.btn {
+  font-size: 25px;
+  color: yellow;
+  width: 2vw;
+  height: 0vh;
+  display: block;
+  margin-top: 400px;
+}
