@@ -1,0 +1,104 @@
+[
+  {
+    "model": "catalog.catalog",
+    "pk": 1,
+    "fields": {
+      "name": "Phone",
+      "description": "Мобильные телефоны"
+    }
+  },
+  {
+    "model": "catalog.catalog",
+    "pk": 2,
+    "fields": {
+      "name": "Books",
+      "description": "Книги"
+    }
+  },
+  {
+    "model": "catalog.catalog",
+    "pk": 3,
+    "fields": {
+      "name": "Clothes",
+      "description": "Одежда"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Iphone15",
+      "description": "Новая модель",
+      "photo": "",
+      "category": 1,
+      "price": 1000,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Iphone14",
+      "description": "Предпоследняя модель",
+      "photo": "",
+      "category": 1,
+      "price": 900,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Война и Мир",
+      "description": "Бедный Балконский...",
+      "photo": "",
+      "category": 2,
+      "price": 25,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Преступление и наказание",
+      "description": "Так и надо этой процентщице!",
+      "photo": "",
+      "category": 2,
+      "price": 30,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Кроссовки",
+      "description": "От Nike",
+      "photo": "",
+      "category": 3,
+      "price": 50,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Костюм от Валентино",
+      "description": "Оно ещё не ваше",
+      "photo": "",
+      "category": 3,
+      "price": 100,
+      "created_at": null,
+      "updated_at": null
+    }
+  }
+]
