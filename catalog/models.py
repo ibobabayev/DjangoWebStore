@@ -30,7 +30,7 @@ class Product(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=50,verbose_name='Имя')
-    number = models.IntegerField(verbose_name='Номер телефона')
+    number = models.TextField(verbose_name='Номер телефона')
     email = models.EmailField(verbose_name='Email')
 
     def __str__(self):

@@ -12,6 +12,5 @@ def contact(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         message = request.POST.get('message')
-
         print(f'Имя пользователя: {name}, email: {email} , номер: {phone} , Отзыв: {message}')
     return render(request,'contact.html',{'contact_book':Contact.objects.all()})
