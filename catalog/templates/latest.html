@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <link rel="stylesheet" href="static/css/home.css">
+     <h6>Список наших новых товаров:</h6>
+        <br>
+        {% for product in filtred_list %}
+            <h6> {{ product }} </h6>
+            <br>
+        {% endfor %}
+    <p>
+   <a class="p-2 btn btn-outline-primary" href="/">Вернуться на главную страницу</a>
+</p>
+</head>
+<body>
+
+</body>
+</html>

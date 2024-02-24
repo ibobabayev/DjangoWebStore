@@ -13,11 +13,16 @@
     <br><textarea placeholder="Ваш отзыв" name='message'></textarea> <br>
     <input type="submit" value="Отправить" />
 </form>
+{%  for contact in contact_book %}
 <h5>Наше месторасположение: Стамбул, Турция</h5>
-<h5>Наш магазин: contact.name</h5>
+<h5>Наш магазин: {{ contact.name }}</h5>
 <!--<h5>Номер для связи: +90 555 300 20 10</h5>-->
-<h5>Номер для связи: contact.phone </h5>
+<h5>Номер для связи:{{ contact.number }}</h5>
 <!--<h5>Наш адрес электронной почты: pasha@mail.com</h5>-->
-<h5>Наш адрес электронной почты: contact.email</h5>
+<h5>Наш адрес электронной почты:{{ contact.email }}</h5>
+{% endfor %}
+<p>
+   <a class="p-2 btn btn-outline-primary" href="/">Вернуться на главную страницу</a>
+</p>
 </body>
 </html>

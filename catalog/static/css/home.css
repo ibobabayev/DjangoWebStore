@@ -17,11 +17,23 @@ h1 {
   margin: 20px;
 }
 
-.btn {
+#.button1 {
   font-size: 25px;
   color: yellow;
   width: 2vw;
   height: 0vh;
   display: block;
   margin-top: 400px;
+  float: left;
+  margin-left: 10px;
+}
+#.button2 {
+  font-size: 20px;
+  color: black;
+  width: 2vw;
+  height: 0vh;
+  display: block;
+  margin-top: 400px;
+  float: right;
+  margin-right: 100px;
 }
