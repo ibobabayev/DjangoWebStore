@@ -1,19 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-     <link rel="stylesheet" href="static/css/home.css">
-     <h6>Список наших новых товаров:</h6>
-        <br>
-        {% for product in filtred_list %}
-            <h6> {{ product }} </h6>
-            <br>
-        {% endfor %}
-    <p>
-   <a class="p-2 btn btn-outline-primary" href="/">Вернуться на главную страницу</a>
-</p>
-</head>
-<body>
-
+{% block icon %}
+    <title>Новые товары</title>
+    <link rel="icon" href="{% static 'images/new.png' %}" type="image/x-icon">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row text-start">
+        <div class="col-lg-9 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <table class="table table-striped" <caption><h2>Наши новые товары</h2></caption>
+                        {% for product in filtred_list %}
+                        <tr>
+                            <td class="w-25">{{ product.name }}</td>
+                            <td>{{ product.category }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
 </body>
 </html>

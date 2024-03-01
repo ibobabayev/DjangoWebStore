@@ -21,7 +21,7 @@ class Product(models.Model):
     updated_at = models.DateField(null=True,blank=True,verbose_name='Дата последнего изменения')
     #manufactured_at = models.DateField(null=True,blank=True,verbose_name='Дата производства продукта')
     def __str__(self):
-        return f'{self.name}({self.description})'
+        return f'Имя продукта: {self.name}  Категория:{self.category}   Цена: {self.price} рублей'
 
     class Meta:
         verbose_name = "Продукт"
