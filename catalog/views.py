@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from catalog.models import Product,Contact
+from catalog.models import Product,Contact,Catalog
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    products = Product.objects.all()
+    product_list = {'products_list': products}
+    return render(request,'home.html',product_list)
 
 def latest(request):
     product_list = Product.objects.order_by('price')[:5]
@@ -20,7 +22,8 @@ def contact(request):
         print(f'Имя:{name} , номер телефона:{phone} , сообщение: {message}')
     return render(request,'contact.html',contact_info)
 
-def products(request):
-    products = Product.objects.all()
-    product_list = {'products_list' : products}
+def products(request,pk):
+    products = Catalog.objects.get(pk=pk)
+    product_list = {'products_list' : Product.objects.filter(category_id=pk),
+                    'title': f'Все продукты категории "{products}"'}
     return render(request,'products.html',product_list)

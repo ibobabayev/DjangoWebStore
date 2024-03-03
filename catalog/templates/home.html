@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load my_tags %}
 <!doctype html>
 {% block icon %}
 <title>Web store</title>
@@ -13,26 +14,29 @@
     <p class="lead">Добро пожаловать в наш магазин ^_^</p>
 </div>
 
-<div class="container">
-    <div class="row text-center">
-        <div class="col-3">
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+        {% for product in products_list %}
+        <div class="col-md-4">
             <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Удобный сервис рассылок</h4>
-                </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$ 140</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Неограниченная лицензия</li>
-                        <li>- Поддержка</li>
-                        <li>- Установка на сервер</li>
-                        <li>- Получение обновлений</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                  <p class="card-text"><strong>{{ product.name }} ( {{ product.description }}   )</strong></p>
+                  <p class="card-text">{{ product.price }} $</p>
+                  <img class="card-img-top" height="250" src="{{ product.photo | mymedia }}">
+                    <br>
+                  <br><div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{% url 'catalog:products' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">К товару</a>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
+  </div>
+</div>
 {% endblock %}
 
 
