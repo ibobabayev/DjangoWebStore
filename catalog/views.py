@@ -23,7 +23,6 @@ def contact(request):
     return render(request,'contact.html',contact_info)
 
 def products(request,pk):
-    products = Catalog.objects.get(pk=pk)
-    product_list = {'products_list' : Product.objects.filter(category_id=pk),
-                    'title': f'Все продукты категории "{products}"'}
+    product = Product.objects.get(pk=pk)
+    product_list = {'products_list' : product}
     return render(request,'products.html',product_list)

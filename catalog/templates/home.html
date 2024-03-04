@@ -13,27 +13,68 @@
     <h1 class="display-4">BakMilStore</h1>
     <p class="lead">Добро пожаловать в наш магазин ^_^</p>
 </div>
-
-<div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row">
-        {% for product in products_list %}
-        <div class="col-md-4">
+<div class="container">
+    <div class="row text-start">
+        <div class="col-lg-9 col-md-6 col-sm-12">
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
-                  <p class="card-text"><strong>{{ product.name }} ( {{ product.description }}   )</strong></p>
-                  <p class="card-text">{{ product.price }} $</p>
-                  <img class="card-img-top" height="250" src="{{ product.photo | mymedia }}">
-                    <br>
-                  <br><div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <a href="{% url 'catalog:products' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">К товару</a>
-                    </div>
-                  </div>
+                    <table class="table table-striped" <caption><h2>Наши товары</h2></caption>
+                         {% for product in products_list %}
+                        <tr>
+                            <td class="w-25"><strong>Имя продукта</strong></td>
+                            <td>{{ product.name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25"><strong>Описание</strong></td>
+                            <td>{{ product.description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25"><strong>Категория</strong></td>
+                            <td>{{ product.category }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25"><strong>Цена за покупку</strong></td>
+                            <td>{{ product.price }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25"><strong>Дата создания</strong></td>
+                            <td>{{ product.created_at }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25"><strong>Дата последнего изменения</strong></td>
+                            <td>{{ product.updated_at }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25"><strong>Изображение</strong></td>
+                            <td><img class="card-img-top" width="100" src="{{ product.photo | mymedia }}"></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>
-        {% endfor %}
+    </div>
+</div>
+<!--<div class="album py-5 bg-light">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--        {% for product in products_list %}-->
+<!--        <div class="col-md-4">-->
+<!--            <div class="card mb-4 box-shadow">-->
+<!--                <div class="card-body">-->
+<!--                  <p class="card-text"><strong>{{ product.name }} ( {{ product.description }}   )</strong></p>-->
+<!--                  <p class="card-text">{{ product.price }} $</p>-->
+<!--                  <img class="card-img-top" height="250" src="{{ product.photo | mymedia }}">-->
+<!--                    <br>-->
+<!--                  <br><div class="d-flex justify-content-between align-items-center">-->
+<!--                    <div class="btn-group">-->
+<!--                      <a href="{% url 'catalog:products' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">К товару</a>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
     </div>
   </div>
 </div>
