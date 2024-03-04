@@ -23,6 +23,6 @@ def contact(request):
     return render(request,'contact.html',contact_info)
 
 def products(request,pk):
-    product = Product.objects.get(pk=pk)
+    product = Product.objects.filter(id=pk)
     product_list = {'products_list' : product}
     return render(request,'products.html',product_list)

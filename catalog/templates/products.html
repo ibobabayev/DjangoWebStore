@@ -9,7 +9,23 @@
 {% endblock %}
 
 {% block content %}
-
+  <div class="row">
+    {% for product in products_list %}
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img class="card-img-top"
+             src="{{ product.photo | mymedia }}"
+             alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text"><strong>{{ product.name }}</strong> из категории <strong>{{ product.category }}</strong></p>
+          <hr>
+          Цена: <em>{{ product.price }} $</em>
+          <p class="card-text">{{ product.description }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 {% endblock %}
 
 
