@@ -1,0 +1,31 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+{% block icon %}
+    <title>Обзор блога</title>
+<!--    <link rel="icon" href="{% static 'images/catalog.jpg' %}" type="image/x-icon">-->
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img class="card-img-top"
+             src="{{ product.photo | mymedia }}"
+             alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text"><strong>{{ object.name }} ({{ object.slug }})</strong></p>
+            <strong>{{ object.description }}</strong>
+          <hr>
+          Количество просмотров: <em>{{ object.views_count }}</em>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+</body>
+</html>
