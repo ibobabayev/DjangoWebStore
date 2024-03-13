@@ -1,19 +1,53 @@
 from django.shortcuts import render
-from catalog.models import Product,Contact , Blogpost
+from catalog.models import Product,Contact , Blogpost , Catalog
 from django.views.generic import ListView,DetailView,TemplateView , CreateView , DeleteView , UpdateView
 from django.urls import reverse_lazy , reverse
 from pytils.translit import slugify
 from django.core.mail import send_mail
+from catalog.forms import ProductForm
 
 
 # def home(request):
 #     products = Product.objects.all()
 #     product_list = {'products_list': products}
 #     return render(request,'product_list.html',product_list)
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:home')
+
+    def form_valid(self, form):
+        if form.is_valid:
+            new_blog = form.save()
+            new_blog.slug = slugify(new_blog.name)
+            new_blog.save()
+
+        return super().form_valid(form)
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    def get_success_url(self):
+        return reverse('catalog:products', args=[self.kwargs.get('pk')])
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('catalog:home')
 
 class ProductListView(ListView):
     model = Product
     extra_context = {'products_list': Product.objects.all()}
+
+    def get_queryset(self,*args,**kwargs):
+        queryset = super().get_queryset(*args,**kwargs)
+        queryset = queryset.filter(category_id=self.kwargs.get('pk'))
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args,**kwargs)
+        category_item = Catalog.objects.get(pk=self.kwargs.get('pk'))
+        context_data['category_pk'] = category_item.pk
+        context_data['title'] = f'Товары категории - {category_item.name}'
 
 # def latest_list.html(request):
 #     product_list = Product.objects.order_by('price')[:5]

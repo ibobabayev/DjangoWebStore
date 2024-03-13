@@ -13,7 +13,9 @@
     <h1 class="display-4">BakMilStore</h1>
     <p class="lead">Добро пожаловать в наш магазин ^_^</p>
 </div>
-
+<div class="col-12 mb-5">
+  <a href="{% url 'catalog:create_product' %}" class="btn btn-outline-primary">Добавить продукт</a>
+</div>
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
@@ -29,6 +31,8 @@
                   <br><div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a href="{% url 'catalog:products' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">К товару</a>
+                      <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'catalog:update_product' product.pk %}">Редактировать</a>
+                      <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'catalog:delete_product' product.pk %}">Удалить</a>
                     </div>
                   </div>
                 </div>
