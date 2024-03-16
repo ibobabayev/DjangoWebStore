@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from catalog.models import Product,Contact , Blogpost , Catalog
+from catalog.models import Product,Contact , Blogpost , Catalog , Version
 from django.views.generic import ListView,DetailView,TemplateView , CreateView , DeleteView , UpdateView
 from django.urls import reverse_lazy , reverse
 from pytils.translit import slugify
@@ -36,7 +36,7 @@ class ProductDeleteView(DeleteView):
 
 class ProductListView(ListView):
     model = Product
-    extra_context = {'products_list': Product.objects.all()}
+    # extra_context = {'products_list': Product.objects.all()}
 
     def get_queryset(self,*args,**kwargs):
         queryset = super().get_queryset(*args,**kwargs)
@@ -45,9 +45,9 @@ class ProductListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(*args,**kwargs)
-        category_item = Catalog.objects.get(pk=self.kwargs.get('pk'))
-        context_data['category_pk'] = category_item.pk
-        context_data['title'] = f'Товары категории - {category_item.name}'
+        context_data ['products_list'] = Product.objects.all()
+        return context_data
+
 
 # def latest_list.html(request):
 #     product_list = Product.objects.order_by('price')[:5]
@@ -148,3 +148,4 @@ class BlogpostDetailView(DetailView):
 class BlogpostDeleteView(DeleteView):
     model = Blogpost
     success_url = reverse_lazy('catalog:list')
+
