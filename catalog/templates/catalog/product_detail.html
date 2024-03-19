@@ -20,7 +20,12 @@
           <hr>
           Цена: <em>{{ product.price }} $</em>
           <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">Версия: {{ current_version.version_name }}</p>
         </div>
+          <div class="btn-group">
+            <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'catalog:update_product' product.pk %}">Редактировать</a>
+            <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'catalog:delete_product' product.pk %}">Удалить</a>
+          </div>
       </div>
     </div>
   </div>

@@ -4,7 +4,8 @@ from django.views.generic import ListView,DetailView,TemplateView , CreateView ,
 from django.urls import reverse_lazy , reverse
 from pytils.translit import slugify
 from django.core.mail import send_mail
-from catalog.forms import ProductForm
+from catalog.forms import ProductForm, VersionForm
+from django.forms import inlineformset_factory
 
 
 # def home(request):
@@ -30,6 +31,23 @@ class ProductUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('catalog:products', args=[self.kwargs.get('pk')])
 
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        VersionFormset = inlineformset_factory(Product,Version,form=VersionForm,extra=1)
+        if self.request.method == 'POST':
+            context_data['formset'] = VersionFormset(self.request.POST, instance=self.object)
+        else:
+            context_data['formset'] = VersionFormset(instance=self.object)
+        return context_data
+
+    def form_valid(self, form):
+        context_data = self.get_context_data()
+        version_form = context_data['formset']
+        self.object = form.save()
+        if version_form.is_valid():
+            version_form.instance = self.object
+            version_form.save()
+        return super().form_valid(form)
 class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:home')
@@ -98,6 +116,12 @@ class ContactTemplateView(TemplateView):
 class ProductDetailView(DetailView):
     model = Product
 
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        product = self.get_object()
+        context_data['versions'] = Version.objects.filter(product=product)
+        context_data['current_version'] = Version.objects.filter(product=product).filter(is_active=True).first()
+        return context_data
 
 class BlogpostCreateView(CreateView):
     model = Blogpost
