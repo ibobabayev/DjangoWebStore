@@ -1,0 +1,169 @@
+[
+  {
+    "model": "catalog.catalog",
+    "pk": 1,
+    "fields": {
+      "name": "Книги",
+      "description": "Читаем вместе"
+    }
+  },
+  {
+    "model": "catalog.catalog",
+    "pk": 2,
+    "fields": {
+      "name": "Одежда",
+      "description": "Стильно"
+    }
+  },
+  {
+    "model": "catalog.catalog",
+    "pk": 3,
+    "fields": {
+      "name": "Мобильные телефоны",
+      "description": "Только хорошие"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Iphone14",
+      "description": "Почти новый",
+      "photo": "product/iphone14_f5iPhn7.png",
+      "category": 3,
+      "price": 500,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Iphone15",
+      "description": "Совсем новый",
+      "photo": "product/iphone15_H3aclei.jpeg",
+      "category": 3,
+      "price": 1000,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Костюм от Валентино",
+      "description": "Оно ещё не ваше",
+      "photo": "product/val_Y5YvbHz.jpeg",
+      "category": 2,
+      "price": 280,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Кроссовки",
+      "description": "Можно хоть бежать целый день",
+      "photo": "product/nike_VTSLW9T.jpeg",
+      "category": 2,
+      "price": 175,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "name": "Преступление и наказание",
+      "description": "Так и надо этой процентщице",
+      "photo": "product/Prestuplenie_i_nakazanie_ZWFIHkA.png",
+      "category": 1,
+      "price": 100,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Война и мир",
+      "description": "Бедный Балконский...",
+      "photo": "product/warandpeace_RiW1X6m.jpg",
+      "category": 1,
+      "price": 100,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 17,
+    "fields": {
+      "name": "Huawei",
+      "description": "New Tel",
+      "photo": "product/Без_названия.jpeg",
+      "category": 3,
+      "price": 25,
+      "created_at": null,
+      "updated_at": null
+    }
+  },
+  {
+    "model": "catalog.contact",
+    "pk": 1,
+    "fields": {
+      "name": "BakMilStore",
+      "number": "+90-555-399-63-93",
+      "email": "bmstore@mail.com"
+    }
+  },
+  {
+    "model": "catalog.blogpost",
+    "pk": 1,
+    "fields": {
+      "name": "Худеем вместе",
+      "slug": "hudeem-vmeste",
+      "description": "Вы всё ещё не готовы к лету??",
+      "preview": "product/1603173776167857534.jpg",
+      "created_at": null,
+      "is_published": true,
+      "views_count": 20
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 6,
+    "fields": {
+      "product": 17,
+      "version_number": 9,
+      "version_name": "Nova",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 7,
+    "fields": {
+      "product": 1,
+      "version_number": 14,
+      "version_name": "Четырнадцатый",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 8,
+    "fields": {
+      "product": 2,
+      "version_number": 15,
+      "version_name": "Пятнадцатый",
+      "is_active": true
+    }
+  }
+]

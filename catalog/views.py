@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from catalog.models import Product,Contact , Blogpost , Catalog , Version
+from catalog.models import Product, Contact, Blogpost, Catalog, Version
 from django.views.generic import ListView,DetailView,TemplateView , CreateView , DeleteView , UpdateView
 from django.urls import reverse_lazy , reverse
 from pytils.translit import slugify
@@ -12,18 +14,24 @@ from django.forms import inlineformset_factory
 #     products = Product.objects.all()
 #     product_list = {'products_list': products}
 #     return render(request,'product_list.html',product_list)
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin,CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
+    login_url = "users/login/"
+    redirect_field_name = "users/login/"
 
     def form_valid(self, form):
+        self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
         if form.is_valid:
-            new_blog = form.save()
-            new_blog.slug = slugify(new_blog.name)
-            new_blog.save()
-
+            new_product = form.save()
+            new_product.slug = slugify(new_product.name)
+            new_product.save()
         return super().form_valid(form)
+
+
 
 class ProductUpdateView(UpdateView):
     model = Product
@@ -172,4 +180,3 @@ class BlogpostDetailView(DetailView):
 class BlogpostDeleteView(DeleteView):
     model = Blogpost
     success_url = reverse_lazy('catalog:list')
-

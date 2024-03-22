@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Catalog(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование')
@@ -19,6 +20,7 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Цена за покупку')
     created_at = models.DateField(null=True,blank=True,verbose_name='Дата создания')
     updated_at = models.DateField(null=True,blank=True,verbose_name='Дата последнего изменения')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,verbose_name='Владелец',on_delete=models.SET_NULL)
     #manufactured_at = models.DateField(null=True,blank=True,verbose_name='Дата производства продукта')
     def __str__(self):
         return f'Имя продукта: {self.name}  Категория:{self.category}   Цена: {self.price} рублей'
