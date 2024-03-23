@@ -18,8 +18,7 @@ class ProductCreateView(LoginRequiredMixin,CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
-    login_url = "users/login/"
-    redirect_field_name = "users/login/"
+    login_url = "users:login"
 
     def form_valid(self, form):
         self.object = form.save()
@@ -33,9 +32,10 @@ class ProductCreateView(LoginRequiredMixin,CreateView):
 
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin,UpdateView):
     model = Product
     form_class = ProductForm
+    login_url = "users:login"
     def get_success_url(self):
         return reverse('catalog:products', args=[self.kwargs.get('pk')])
 
@@ -56,9 +56,10 @@ class ProductUpdateView(UpdateView):
             version_form.instance = self.object
             version_form.save()
         return super().form_valid(form)
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin,DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:home')
+    login_url = "users:login"
 
 class ProductListView(ListView):
     model = Product
@@ -131,10 +132,11 @@ class ProductDetailView(DetailView):
         context_data['current_version'] = Version.objects.filter(product=product).filter(is_active=True).first()
         return context_data
 
-class BlogpostCreateView(CreateView):
+class BlogpostCreateView(LoginRequiredMixin,CreateView):
     model = Blogpost
     fields = ('name','description','preview',)
     success_url = reverse_lazy('catalog:list')
+    login_url = "users:login"
 
     def form_valid(self, form):
         if form.is_valid:
@@ -144,9 +146,10 @@ class BlogpostCreateView(CreateView):
 
         return super().form_valid(form)
 
-class BlogpostUpdateView(UpdateView):
+class BlogpostUpdateView(LoginRequiredMixin,UpdateView):
     model = Blogpost
     fields = ('name','description','preview',)
+    login_url = "users:login"
 
     def get_success_url(self):
         return reverse('catalog:view',args=[self.kwargs.get('pk')])
@@ -177,6 +180,7 @@ class BlogpostDetailView(DetailView):
         return self.object
 
 
-class BlogpostDeleteView(DeleteView):
+class BlogpostDeleteView(LoginRequiredMixin,DeleteView):
     model = Blogpost
     success_url = reverse_lazy('catalog:list')
+    login_url = "users:login"
