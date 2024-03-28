@@ -1,7 +1,6 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from catalog.models import Product, Contact, Blogpost, Catalog, Version
+from catalog.models import Product, Contact, Blogpost,Version
 from django.views.generic import ListView,DetailView,TemplateView , CreateView , DeleteView , UpdateView
 from django.urls import reverse_lazy , reverse
 from pytils.translit import slugify
@@ -72,7 +71,7 @@ class ProductListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(*args,**kwargs)
-        context_data ['products_list'] = Product.objects.all()
+        context_data['products_list'] = Product.objects.all()
         return context_data
 
 

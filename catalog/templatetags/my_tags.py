@@ -8,4 +8,3 @@ def mymedia(value):
         return f'/media/{value}'
     else:
         return 'No Photo'
-

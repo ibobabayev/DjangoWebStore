@@ -1,7 +1,6 @@
 {% extends 'catalog/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
 {% block icon %}
     <title>Удалить продукт</title>
     <link rel="icon" href="{% static 'images/delete.png' %}" type="image/x-icon">
@@ -18,7 +17,7 @@
                         </div>
                         <div class="card-body">
                                 {% csrf_token %}
-                                <p>Действительно ли вы хотите удалить {{ product.name }}</p>
+                                <p>Действительно ли вы хотите удалить {{product.name}}</p>
                                 <button type="submit" class="btn btn-danger">Подтвердить</button>
                                 <a href="{% url 'catalog:home' %}" class="btn btn-warning">Отмена</a>
                         </div>

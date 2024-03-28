@@ -1,6 +1,5 @@
 {% extends 'catalog/base.html' %}
 {% load static %}
-<!DOCTYPE html>
 {% block icon %}
     <title>Новые товары</title>
     <link rel="icon" href="{% static 'images/new.png' %}" type="image/x-icon">
@@ -11,7 +10,8 @@
         <div class="col-lg-9 col-md-6 col-sm-12">
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
-                    <table class="table table-striped" <caption><h2>Наши новые товары</h2></caption>
+                    <caption><h2>Наши новые товары</h2></caption>
+                    <table class="table table-striped">
                         {% for product in filtred_list %}
                         <tr>
                             <td class="w-25">{{ product.name }}</td>
@@ -25,5 +25,3 @@
     </div>
 </div>
 {% endblock %}
-</body>
-</html>

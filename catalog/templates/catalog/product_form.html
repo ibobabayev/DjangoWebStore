@@ -1,7 +1,6 @@
 {% extends 'catalog/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
 {% block icon %}
     <title>Добавить продукт</title>
     <link rel="icon" href="{% static 'images/create.jpg' %}" type="image/x-icon">
@@ -35,7 +34,7 @@
                         </div>
                         <div class="card-body">
                                {{ formset.management_form }}
-                               {% for form in formset.forms %}
+                               {% for form in formset.forms%}
                                     {{ form.as_p }}
                                     {% if not forloop.last %}
                                         <hr>

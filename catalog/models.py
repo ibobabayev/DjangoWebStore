@@ -21,7 +21,7 @@ class Product(models.Model):
     created_at = models.DateField(null=True,blank=True,verbose_name='Дата создания')
     updated_at = models.DateField(null=True,blank=True,verbose_name='Дата последнего изменения')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,verbose_name='Владелец',on_delete=models.SET_NULL)
-    #manufactured_at = models.DateField(null=True,blank=True,verbose_name='Дата производства продукта')
+    #   manufactured_at = models.DateField(null=True,blank=True,verbose_name='Дата производства продукта')
     def __str__(self):
         return f'Имя продукта: {self.name}  Категория:{self.category}   Цена: {self.price} рублей'
 
