@@ -37,7 +37,9 @@
                   <br><div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a href="{% url 'catalog:products' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">К товару</a>
-                      <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'catalog:update_product' product.pk %}">Редактировать</a>
+                        {% if perms.catalog.change_category and perms.catalog.change_description and perms.catalog.set_published and product.owner == self.request.user or user.is_superuser%}
+                            <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'catalog:update_product' product.pk %}">Редактировать</a>
+                        {% endif %}
                       <a class="btn btn-sm btn-outline-secondary" type="button" href="{% url 'catalog:delete_product' product.pk %}">Удалить</a>
                     </div>
                   </div>

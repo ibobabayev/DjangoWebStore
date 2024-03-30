@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import Http404
 from django.shortcuts import render
 from catalog.models import Product, Contact, Blogpost,Version
 from django.views.generic import ListView,DetailView,TemplateView , CreateView , DeleteView , UpdateView
@@ -31,12 +32,20 @@ class ProductCreateView(LoginRequiredMixin,CreateView):
 
 
 
-class ProductUpdateView(LoginRequiredMixin,UpdateView):
+class ProductUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     model = Product
     form_class = ProductForm
     login_url = "users:login"
+    permission_required = ('catalog.set_published','catalog.change_description','catalog.change_category')
+
     def get_success_url(self):
         return reverse('catalog:products', args=[self.kwargs.get('pk')])
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if (self.object.owner != self.request.user and not self.request.user.is_superuser):
+            raise Http404
+        return self.object
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
