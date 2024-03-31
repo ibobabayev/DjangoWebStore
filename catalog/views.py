@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.http import Http404
 from django.shortcuts import render
 from catalog.models import Product, Contact, Blogpost,Version
@@ -32,20 +32,21 @@ class ProductCreateView(LoginRequiredMixin,CreateView):
 
 
 
-class ProductUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+class ProductUpdateView(LoginRequiredMixin,UpdateView):
     model = Product
     form_class = ProductForm
     login_url = "users:login"
-    permission_required = ('catalog.set_published','catalog.change_description','catalog.change_category')
+    # permission_required = ('catalog.set_published', 'catalog.change_description','catalog.change_category')
 
     def get_success_url(self):
         return reverse('catalog:products', args=[self.kwargs.get('pk')])
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        if (self.object.owner != self.request.user and not self.request.user.is_superuser):
+        if self.object.owner == self.request.user or self.request.user.is_superuser:
+            return self.object
+        else:
             raise Http404
-        return self.object
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -158,6 +159,7 @@ class BlogpostUpdateView(LoginRequiredMixin,UpdateView):
     model = Blogpost
     fields = ('name','description','preview',)
     login_url = "users:login"
+
 
     def get_success_url(self):
         return reverse('catalog:view',args=[self.kwargs.get('pk')])
