@@ -1,13 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.http import Http404
 from django.shortcuts import render
-from catalog.models import Product, Contact, Blogpost,Version
+from catalog.models import Product, Contact, Blogpost, Version, Catalog
 from django.views.generic import ListView,DetailView,TemplateView , CreateView , DeleteView , UpdateView
 from django.urls import reverse_lazy , reverse
 from pytils.translit import slugify
 from django.core.mail import send_mail
 from catalog.forms import ProductForm, VersionForm
 from django.forms import inlineformset_factory
+
+from catalog.services import cached_categories, cached_products
 
 
 # def home(request):
@@ -81,7 +83,8 @@ class ProductListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(*args,**kwargs)
-        context_data['products_list'] = Product.objects.all()
+        # context_data['products_list'] = Product.objects.all()
+        context_data['products_list'] = cached_products()
         return context_data
 
 
@@ -194,3 +197,11 @@ class BlogpostDeleteView(LoginRequiredMixin,DeleteView):
     model = Blogpost
     success_url = reverse_lazy('catalog:list')
     login_url = "users:login"
+
+
+class CatalogListView(ListView):
+    model = Catalog
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        context_data['categories_list'] = cached_categories()
+        return context_data

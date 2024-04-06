@@ -1,0 +1,34 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% load my_tags %}
+{% block icon %}
+<title>Список категорий</title>
+<link rel="icon" href="{% static 'images/web.png' %}" type="image/x-icon">
+
+{% endblock %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">BakMilStore</h1>
+    <p class="lead">Добро пожаловать в наш магазин ^_^</p>
+</div>
+<div class="col-12 mb-5">
+  <a href="{% url 'catalog:create_product' %}" class="btn btn-outline-primary">Добавить продукт</a>
+</div>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+        {% for category in categories_list %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                  <p class="card-text"><strong>Категория: {{category.name}}</strong></p>
+                  <p class="card-text">{{ category.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
