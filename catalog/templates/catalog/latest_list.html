@@ -14,7 +14,7 @@
                     <table class="table table-striped">
                         {% for product in filtred_list %}
                         <tr>
-                            <td class="w-25">{{ product.name }}</td>
+                            <td class="w-25"><a href="{% url 'catalog:products' product.pk %}">{{ product.name }}</a> </td>
                             <td>{{ product.category }}</td>
                         </tr>
                         {% endfor %}
